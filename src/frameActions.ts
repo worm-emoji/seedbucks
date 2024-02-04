@@ -75,8 +75,7 @@ export const handleMint = async (c: Context, message: FrameValidationData) => {
       chain,
     })
 
-    // const tx = await client.writeContract(request)
-    const tx = '0x1234'
+    const tx = await client.writeContract(request)
     return renderFrame(c, {
       image: images.successfulMint,
       postUrl: `${externalHostname}/frame/successfulMint?minter=${account.address}&tx=${tx}`,
