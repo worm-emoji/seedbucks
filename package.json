@@ -4,11 +4,14 @@
     "deploy": "wrangler deploy --minify src/index.ts"
   },
   "dependencies": {
+    "@coinbase/onchainkit": "^0.4.5",
     "hono": "^3.12.8",
+    "qs": "^6.11.2",
     "viem": "^2.7.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240129.0",
+    "@types/qs": "^6.9.11",
     "wrangler": "^3.25.0"
   }
 }

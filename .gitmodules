@@ -4,3 +4,6 @@
 [submodule "contract/lib/solady"]
 	path = contract/lib/solady
 	url = https://github.com/vectorized/solady
+[submodule "contract/lib/solmate"]
+	path = contract/lib/solmate
+	url = https://github.com/transmissions11/solmate

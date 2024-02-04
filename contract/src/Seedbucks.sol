@@ -10,7 +10,8 @@ contract Seedbucks is ERC20, Ownable {
     error InvalidSignature();
 
     event SignerUpdated(address indexed oldSigner, address indexed newSigner);
-    event SeedbucksClaimed(uint256 indexed fid, uint256 indexed ethBalance);
+    event SeedbucksClaimed(uint256 indexed fid, address indexed minter, uint256 indexed ethBalance);
+    event Referred(address indexed referrer, address indexed referred, uint256 indexed amount);
 
     mapping(address => bool) public mintAddresses;
     mapping(uint256 => bool) public mintFids;
@@ -28,21 +29,34 @@ contract Seedbucks is ERC20, Ownable {
         return "SBUX";
     }
 
-    function mint(uint256 fid, bytes calldata signature) public {
+    function mint(uint256 fid, address referrer, bytes calldata signature) public {
         if (mintAddresses[msg.sender] || mintFids[fid]) {
             revert AlreadyMinted();
         }
 
-        address recovered = ECDSA.recoverCalldata(keccak256(abi.encodePacked(fid, msg.sender)), signature);
+        bytes32 hash = ECDSA.toEthSignedMessageHash(keccak256(abi.encodePacked(fid, msg.sender)));
+
+        address recovered = ECDSA.tryRecover(hash, signature);
         if (recovered != signer) {
             revert InvalidSignature();
         }
 
         mintAddresses[msg.sender] = true;
         mintFids[fid] = true;
-        emit SeedbucksClaimed(fid, msg.sender.balance);
 
-        _mint(msg.sender, 1e50 * msg.sender.balance);
+        emit SeedbucksClaimed(fid, msg.sender, msg.sender.balance);
+
+        // mint 1 billion tokens per 1 ETH in the sender's balance
+        uint256 amount = 1e9 * msg.sender.balance;
+
+        // mint 10% of the tokens to the referrer
+        if (referrer != address(0) && referrer != msg.sender) {
+            uint256 referralShare = amount / 10;
+            emit Referred(referrer, msg.sender, referralShare);
+            _mint(referrer, referralShare);
+        }
+
+        _mint(msg.sender, amount);
     }
 
     function updateSigner(address _signer) public onlyOwner {
