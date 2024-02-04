@@ -37,5 +37,8 @@ export const renderFrame = (c: Context, opts: renderFrameOptions) =>
         )
       })}
       <body></body>
+      <script>
+        window.location.href = 'https://warpcast.com/worm.eth/0x2f7eb39e'
+      </script>
     </html>`.toString(),
   )

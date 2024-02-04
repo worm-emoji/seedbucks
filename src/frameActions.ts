@@ -26,7 +26,7 @@ export type FrameHandler = (
 export const externalHostname = 'https://seedbucks.xyz'
 
 export const images = {
-  mint: `https://seedbucks.xyz/static/share.png`,
+  mint: `https://seedbucks.xyz/static/share.png?v2`,
   successfulMint: `https://seedbucks.xyz/static/minted.png`,
   missingSeed: `https://seedbucks.xyz/static/missingseed.png`,
   alreadyMinted: `https://seedbucks.xyz/static/alreadyminted.png`,
