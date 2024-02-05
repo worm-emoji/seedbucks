@@ -24,19 +24,32 @@ export type FrameHandler = (
 ) => Promise<Response>
 
 export const externalHostname = 'https://seedbucks.xyz'
-
+export const fidCutoff = 283269
 export const images = {
   mint: `https://seedbucks.xyz/static/share.png?v3`,
   successfulMint: `https://seedbucks.xyz/static/minted.png`,
   missingSeed: `https://seedbucks.xyz/static/missingseed.png`,
   alreadyMinted: `https://seedbucks.xyz/static/alreadyminted.png`,
   notEnoughEth: `https://seedbucks.xyz/static/notenougheth.png?2`,
+  tooLate: `https://seedbucks.xyz/static/toolate.png`,
 }
 
 export const handleMint = async (c: Context, message: FrameValidationData) => {
   const { ref } = c.req.query()
 
   const fid = message.interactor.fid
+  if (fid > fidCutoff) {
+    return renderFrame(c, {
+      image: images.tooLate,
+      postUrl: `${externalHostname}/frame/mint`,
+      showTextInput: true,
+      buttons: [
+        { text: 'Mint' },
+        { text: 'Share referral link (💻 only)', link: true },
+      ],
+    })
+  }
+
   let account: Account
   try {
     account = mnemonicToAccount(message.input.trim())
