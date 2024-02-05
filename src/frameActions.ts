@@ -38,7 +38,7 @@ export const handleMint = async (c: Context, message: FrameValidationData) => {
   return renderFrame(c, {
     image: images.mint,
     postUrl: `${externalHostname}/frame/mint`,
-    showTextInput: true,
+    showTextInput: false,
     buttons: [
       // { text: 'Mint' },
       // { text: 'Share referral link (💻 only)', link: true },
