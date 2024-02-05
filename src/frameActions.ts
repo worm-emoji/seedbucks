@@ -120,7 +120,7 @@ export const shareLink = async (c: Context, message: FrameValidationData) => {
   }
 
   const query: Record<string, string> = {
-    text: 'I just minted Seedbucks – the first ERC20 that uses Frame seed phrase as a minting mechanism. Try it out to earn $SEED',
+    text: 'I just minted Seedbucks – the first ERC20 that uses Frame seed phrase as a minting mechanism. Try it out to earn $SBUX.',
     'embeds[]': `${externalHostname}?ref=${minter}`,
   }
 
