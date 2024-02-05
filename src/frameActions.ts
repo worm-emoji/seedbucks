@@ -30,7 +30,7 @@ export const images = {
   successfulMint: `https://seedbucks.xyz/static/minted.png`,
   missingSeed: `https://seedbucks.xyz/static/missingseed.png`,
   alreadyMinted: `https://seedbucks.xyz/static/alreadyminted.png`,
-  notEnoughEth: `https://seedbucks.xyz/static/notenougheth.png`,
+  notEnoughEth: `https://seedbucks.xyz/static/notenougheth.png?2`,
 }
 
 export const handleMint = async (c: Context, message: FrameValidationData) => {
