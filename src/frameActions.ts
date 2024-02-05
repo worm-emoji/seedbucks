@@ -26,7 +26,7 @@ export type FrameHandler = (
 export const externalHostname = 'https://seedbucks.xyz'
 export const fidCutoff = 283269
 export const images = {
-  mint: `https://seedbucks.xyz/static/share.png?v3`,
+  mint: `https://seedbucks.xyz/static/share.png?closed`,
   successfulMint: `https://seedbucks.xyz/static/minted.png`,
   missingSeed: `https://seedbucks.xyz/static/missingseed.png`,
   alreadyMinted: `https://seedbucks.xyz/static/alreadyminted.png`,
@@ -35,6 +35,16 @@ export const images = {
 }
 
 export const handleMint = async (c: Context, message: FrameValidationData) => {
+  return renderFrame(c, {
+    image: images.mint,
+    postUrl: `${externalHostname}/frame/mint`,
+    showTextInput: true,
+    buttons: [
+      // { text: 'Mint' },
+      // { text: 'Share referral link (💻 only)', link: true },
+    ],
+  })
+
   const { ref } = c.req.query()
 
   const fid = message.interactor.fid
