@@ -41,7 +41,7 @@ app.get('/', (c) => {
     buttons: [
       { text: 'Mint' },
       // { text: 'View leaderboard', link: true },
-      { text: 'Share referral link (desktop only)', link: true },
+      { text: 'Share referral link (💻 only)', link: true },
     ],
   })
 })
