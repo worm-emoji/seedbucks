@@ -8,6 +8,7 @@ import {ECDSA} from "solady/utils/ECDSA.sol";
 contract Seedbucks is ERC20, Ownable {
     error AlreadyMinted();
     error InvalidSignature();
+    error SupplyReached();
 
     event SignerUpdated(address indexed oldSigner, address indexed newSigner);
     event SeedbucksClaimed(uint256 indexed fid, address indexed minter, uint256 indexed ethBalance);
@@ -17,16 +18,19 @@ contract Seedbucks is ERC20, Ownable {
     mapping(uint256 => bool) public mintFids;
     address public signer;
 
+    // 1.5tn total supply
+    uint256 public constant maxSupply = 1_500_000_000_000 * 1e18;
+
     constructor() {
         _initializeOwner(msg.sender);
     }
 
     function name() public pure override returns (string memory) {
-        return "Seedbucks";
+        return "Seedbucks2";
     }
 
     function symbol() public pure override returns (string memory) {
-        return "SBUX";
+        return "SBUX2";
     }
 
     function mint(uint256 fid, address referrer, bytes calldata signature) public {
@@ -34,10 +38,14 @@ contract Seedbucks is ERC20, Ownable {
             revert AlreadyMinted();
         }
 
+        if (totalSupply() >= maxSupply) {
+            revert SupplyReached();
+        }
+
         bytes32 hash = ECDSA.toEthSignedMessageHash(keccak256(abi.encodePacked(fid, msg.sender)));
 
         address recovered = ECDSA.tryRecover(hash, signature);
-        if (recovered != signer) {
+        if (recovered != signer || recovered == address(0)) {
             revert InvalidSignature();
         }
 

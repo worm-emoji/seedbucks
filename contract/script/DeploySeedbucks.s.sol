@@ -8,6 +8,6 @@ contract DeploySeedbucks is Script {
     function run() public {
         vm.startBroadcast();
         Seedbucks sb = new Seedbucks();
-        sb.updateSigner(0x08e7e7a9BEe96A46085B772d676e9C255e09605b);
+        sb.updateSigner(0x41a4a9E5dA2Bb0E85dad5244DEacd1b70DA61187);
     }
 }

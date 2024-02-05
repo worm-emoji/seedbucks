@@ -59,6 +59,13 @@ export default [
   },
   {
     type: 'function',
+    name: 'maxSupply',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint256', internalType: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
     name: 'mint',
     inputs: [
       { name: 'fid', type: 'uint256', internalType: 'uint256' },
@@ -372,6 +379,7 @@ export default [
   { type: 'error', name: 'NewOwnerIsZeroAddress', inputs: [] },
   { type: 'error', name: 'NoHandoverRequest', inputs: [] },
   { type: 'error', name: 'PermitExpired', inputs: [] },
+  { type: 'error', name: 'SupplyReached', inputs: [] },
   { type: 'error', name: 'TotalSupplyOverflow', inputs: [] },
   { type: 'error', name: 'Unauthorized', inputs: [] },
 ]

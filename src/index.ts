@@ -37,11 +37,11 @@ app.get('/', (c) => {
   return renderFrame(c, {
     image: images.mint,
     postUrl,
-    showTextInput: false,
+    showTextInput: true,
     buttons: [
-      // { text: 'Mint' },
-      // // { text: 'View leaderboard', link: true },
-      // { text: 'Share referral link (💻 only)', link: true },
+      { text: 'Mint' },
+      // { text: 'View leaderboard', link: true },
+      { text: 'Share referral link (💻 only)', link: true },
     ],
   })
 })

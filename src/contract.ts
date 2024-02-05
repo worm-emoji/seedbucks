@@ -3,7 +3,7 @@ import { base } from 'viem/chains'
 
 // export const chain = devNetChain
 export const chain = base
-export const contract = '0x5b686cef77A9B5d48fFeF0632268423EC3211206'
+export const contract = '0x4926C0Dc9a9d4C0aFe4Aad06Cd1B7f7d170F1dfd'
 
 const msgHash = (fid: number, address: Address) => {
   return {
