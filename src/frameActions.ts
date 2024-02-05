@@ -136,7 +136,7 @@ export const shareLink = async (c: Context, message: FrameValidationData) => {
   }
 
   const query: Record<string, string> = {
-    text: 'I just minted Seedbucks – the first Frame to use your seed phrase to transact onchain. Try it out to earn $SBUX.',
+    text: 'I just minted Seedbucks2 – the fixed contract for the first Frame to use your seed phrase to transact onchain. Try it out to earn $SBUX2.',
     'embeds[]': `${externalHostname}?ref=${minter}`,
   }
 
