@@ -45,7 +45,10 @@ export const handleMint = async (c: Context, message: FrameValidationData) => {
       image: images.missingSeed,
       postUrl: `${externalHostname}/frame/mint`,
       showTextInput: true,
-      buttons: [{ text: 'Mint' }, { text: 'Share referral link', link: true }],
+      buttons: [
+        { text: 'Mint' },
+        { text: 'Share referral link (desktop only)', link: true },
+      ],
     })
   }
   const sig = await signMsg(
@@ -82,7 +85,7 @@ export const handleMint = async (c: Context, message: FrameValidationData) => {
       showTextInput: false,
       buttons: [
         { text: 'View transaction', link: true },
-        { text: 'Share referral link', link: true },
+        { text: 'Share referral link (desktop only)', link: true },
       ],
     })
   } catch (e) {
@@ -94,7 +97,7 @@ export const handleMint = async (c: Context, message: FrameValidationData) => {
         showTextInput: true,
         buttons: [
           { text: 'Mint' },
-          { text: 'Share referral link', link: true },
+          { text: 'Share referral link (desktop only)', link: true },
         ],
       })
     }
@@ -104,7 +107,7 @@ export const handleMint = async (c: Context, message: FrameValidationData) => {
         image: images.alreadyMinted,
         postUrl: `${externalHostname}/frame/alreadyMinted?minter=${account.address}`,
         showTextInput: false,
-        buttons: [{ text: 'Share referral link', link: true }],
+        buttons: [{ text: 'Share referral link (desktop only)', link: true }],
       })
     }
 
